@@ -6,19 +6,19 @@
 #define TAREA3_0PROGRA3_1_HERRAMIENTAS_H
 
 struct Herramienta {
-    int codigo;			//4
-    char nombre[30];	//30
-    int catidad;		//4
-    float precio;		//8
-    //44
+    int codigo;
+    char nombre[30];
+    int cant;
+    float precio;
+
 };
 
 void creararchivo();
-int retornoBytes_SigEspacioVacio(int);
+int EspacioVacio(int);
 void agregar();
+void buscar();
 void modificar();
 void eliminar();
-void buscar();
 void imprimirlista();
 
 #endif //TAREA3_0PROGRA3_1_HERRAMIENTAS_H

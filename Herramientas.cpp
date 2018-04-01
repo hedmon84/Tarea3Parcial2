@@ -10,35 +10,35 @@ using namespace std;
 
 void creararchivo()
 {
-    ofstream archivoOut("herramienta.dat", ios::out | ios::app | ios::binary);
+    ofstream archivoFuera("herramienta.dat", ios::out | ios::app | ios::binary);
 
-    if (!archivoOut) {
-        cout << "ERROR ARCHIVO" << endl;
+    if (!archivoFuera) {
+        cout << "Error al abrir el archivo herramienta.dat" << endl;
         return;
     }
 
 
 
-    for (int x = 0; x < 101; x++) {
+    for (int x = 0; x < 100; x++) {
         Herramienta nuevo;
         nuevo.codigo = -1;
         strcpy(nuevo.nombre, "");
-        nuevo.catidad = -1;
+        nuevo.cant = -1;
         nuevo.precio = -1;
 
-        archivoOut.write(reinterpret_cast<const char *>(&nuevo), sizeof(Herramienta));
+        archivoFuera.write(reinterpret_cast<const char *>(&nuevo), sizeof(Herramienta));
 
     }
-    cout << "Lista creada!" << endl;
-    archivoOut.close();
+    cout << "Lista creada" << endl;
+    archivoFuera.close();
 }
 
-int retornoBytes_SigEspacioVacio(int x)
+int EspacioVacio(int x)
 {
     ifstream archivoIn("herramienta.dat", ios::in | ios::binary);
 
     if (!archivoIn) {
-        cout << "ERROR ARCHIVO" << endl;
+        cout << "Error al abrir el archivo herramienta.dat" << endl;
         return -1;
     }
 
@@ -58,7 +58,7 @@ int retornoBytes_SigEspacioVacio(int x)
         archivoIn.read(reinterpret_cast<char *>(&actual), sizeof(Herramienta));
     }
     archivoIn.close();
-    cout <<  "Codigo no existe" << endl;
+    cout <<  "Codigo no encontrado" << endl;
     return -1;
 }
 
@@ -70,11 +70,11 @@ void agregar()
 
     fstream archivoOut("herramienta.dat", ios::in | ios::out | ios::binary);
     if (!archivoOut) {
-        cout << "ERROR ARCHIVO" << endl;
+        cout << "Error al abrir el archivo herramienta.dat" << endl;
         return;
     }
 
-    int pos = retornoBytes_SigEspacioVacio(-1);
+    int pos = EspacioVacio(-1);
     cout << pos << endl;
 
     archivoOut.seekp(pos, ios::beg);
@@ -85,11 +85,11 @@ void agregar()
     cout << "Ingrese nombre: ";
     cin >> nuevo.nombre;
     cout << "Ingrese cantidad: ";
-    cin >> nuevo.catidad;
+    cin >> nuevo.cant;
     cout << "Ingrese precio: ";
     cin >> nuevo.precio;
     archivoOut.write(reinterpret_cast<const char *>(&nuevo), sizeof(Herramienta));
-    cout << "HERRAMIENTA GUARDADA!" << endl;
+    cout << "Herramienta Agregada" << endl;
     archivoOut.close();
 
 }
@@ -99,7 +99,7 @@ void modificar()
     fstream modificarArchivo("herramienta.dat", ios::in | ios::out | ios::binary);
 
     if (!modificarArchivo) {
-        cout << "ERROR ARCHIVO" << endl;
+        cout << "Error al abrir el archivo herramienta.dat" << endl;
         return;
     }
 
@@ -107,7 +107,7 @@ void modificar()
     int cod;
     cin >> cod;
 
-    int bytes = retornoBytes_SigEspacioVacio(cod);
+    int bytes = EspacioVacio(cod);
     modificarArchivo.seekp(bytes, ios::beg);
     Herramienta nuevo;
     cout << "\nIngrese codigo: ";
@@ -115,11 +115,11 @@ void modificar()
     cout << "Ingrese nombre: ";
     cin >> nuevo.nombre;
     cout << "Ingrese cantidad: ";
-    cin >> nuevo.catidad;
+    cin >> nuevo.cant;
     cout << "Ingrese precio: ";
     cin >> nuevo.precio;
     modificarArchivo.write(reinterpret_cast<const char *>(&nuevo), sizeof(Herramienta));
-    cout << "HERRAMIENTA MODIFICADA!" << endl;
+    cout << "Herramienta Modificada" << endl;
     modificarArchivo.close();
 }
 
@@ -128,23 +128,23 @@ void eliminar()
     fstream eliminarHerramienta("herramienta.dat", ios::in | ios::out | ios::binary);
 
     if (!eliminarHerramienta) {
-        cout << "ERROR ARCHIVO" << endl;
+        cout << "Error al abrir el archivo herramienta.dat" << endl;
         return;
     }
 
     cout << "\nIngrese codigo de la herramienta: ";
     int cod; cin >> cod;
 
-    int bytes = retornoBytes_SigEspacioVacio(cod);
+    int bytes = EspacioVacio(cod);
     eliminarHerramienta.seekp(bytes, ios::beg);
     Herramienta nuevo;
     nuevo.codigo = -1;
     strcpy(nuevo.nombre, "");
-    nuevo.catidad = -1;
+    nuevo.cant = -1;
     nuevo.precio = -1;
 
     eliminarHerramienta.write(reinterpret_cast<const char *>(&nuevo), sizeof(Herramienta));
-    cout << "HERRAMIENTA ELIMINADA!" << endl;
+    cout << "Herramienta Eliminada" << endl;
     eliminarHerramienta.close();
 
 }
@@ -154,26 +154,26 @@ void buscar()
     ifstream buscarHerramienta("herramienta.dat", ios::in | ios::binary);
 
     if (!buscarHerramienta) {
-        cout << "ERROR ARCHIVO" << endl;
+        cout << "Error al abrir el archivo herramienta.dat" << endl;
         return;
     }
 
     buscarHerramienta.seekg(0, ios::beg);
 
     cout << "\nIngrese codigo de la herramienta: ";
-    int cod;
-    cin >> cod;
+    int codigo;
+    cin >> codigo;
 
     Herramienta actual;
     buscarHerramienta.read(reinterpret_cast<char *>(&actual), sizeof(Herramienta));
     while (!buscarHerramienta.eof())
     {
-        if (actual.codigo == cod)
+        if (actual.codigo == codigo)
         {
             cout << "\nCodigo: " << actual.codigo << "  ";
             cout << "Nombre: " << actual.nombre << "  ";
-            cout << "Cantidad: " << actual.catidad << "  ";
-            cout << "Precio: " << actual.precio << "\n---------------------------------------------------------------------------------------------\n";
+            cout << "Cantidad: " << actual.cant << "  ";
+            cout << "Precio: " << actual.precio << endl;
         }
 
         buscarHerramienta.read(reinterpret_cast<char *>(&actual), sizeof(Herramienta));
@@ -188,7 +188,7 @@ void imprimirlista()
     ifstream archivoIn("herramienta.dat", ios::in | ios::binary);
 
     if (!archivoIn) {
-        cout << "ERROR ARCHIVO" << endl;
+        cout << "Error al abrir el archivo herramienta.dat" << endl;
         return;
     }
 
@@ -205,8 +205,8 @@ void imprimirlista()
 
         cout << "Codigo: " << actual.codigo << "  ";
         cout << "Nombre: " << actual.nombre << "  ";
-        cout << "Cantidad: " << actual.catidad << "  ";
-        cout << "Precio: " << actual.precio << "\n---------------------------------------------------------------------------------------------\n";
+        cout << "Cantidad: " << actual.cant << "  ";
+        cout << "Precio: " << actual.precio << endl;
 
         archivoIn.read(reinterpret_cast<char *>(&actual), sizeof(Herramienta));
     }
