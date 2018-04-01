@@ -1,0 +1,3 @@
+/cygdrive/d/Archivo De Programas/JetBrains/CLion 2017.1.3/CLion Projects/Tarea3.0Progra3.1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/cygdrive/d/Archivo De Programas/JetBrains/CLion 2017.1.3/CLion Projects/Tarea3.0Progra3.1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/d/Archivo De Programas/JetBrains/CLion 2017.1.3/CLion Projects/Tarea3.0Progra3.1/cmake-build-debug/CMakeFiles/Tarea3_0Progra3_1.dir

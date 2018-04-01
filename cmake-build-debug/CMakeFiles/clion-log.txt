@@ -1,0 +1,4 @@
+"C:\Users\Erick Nisbeth\.CLion2017.2\system\cygwin_cmake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/cygdrive/d/Archivo De Programas/JetBrains/CLion 2017.1.3/CLion Projects/Tarea3.0Progra3.1"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /cygdrive/d/Archivo De Programas/JetBrains/CLion 2017.1.3/CLion Projects/Tarea3.0Progra3.1/cmake-build-debug

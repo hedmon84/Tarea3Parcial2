@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/d/Archivo De Programas/JetBrains/CLion 2017.1.3/CLion Projects/Tarea3.0Progra3.1/main.cpp
+iostream
+-
+

@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/Tarea3_0Progra3_1.dir/main.cpp.o CMakeFiles/Tarea3_0Progra3_1.dir/Herramientas.cpp.o  -o Tarea3_0Progra3_1.exe -Wl,--out-implib,libTarea3_0Progra3_1.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
